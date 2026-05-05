@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "enabledManagers": ["npm"],
+  "packageRules": [
+    {
+      "description": "Group e2e-test-utils and Playwright updates across all workspaces into a single PR",
+      "matchPackageNames": [
+        "@red-hat-developer-hub/e2e-test-utils",
+        "@playwright/test"
+      ],
+      "groupName": "e2e test dependencies",
+      "groupSlug": "e2e-test-deps",
+      "schedule": ["before 6am on Monday"]
+    },
+    {
+      "description": "Disable updates for all other npm packages",
+      "matchManagers": ["npm"],
+      "matchPackageNames": [
+        "!@red-hat-developer-hub/e2e-test-utils",
+        "!@playwright/test"
+      ],
+      "enabled": false
+    }
+  ],
+  "lockFileMaintenance": {
+    "enabled": false
+  }
+}
